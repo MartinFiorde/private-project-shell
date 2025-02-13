@@ -27,7 +27,7 @@ I contributed to this project by implementing core features, ensuring privacy, a
 
 ### Before
 <p align="center">
-  <img src="https://github.com/MartinFiorde/private-project-shell/tree/main/assets/before.png" />
+  <img src="https://github.com/MartinFiorde/private-project-shell/blob/main/assets/before.png" />
 </p>
 
 ### After
