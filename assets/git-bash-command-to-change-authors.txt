@@ -1,0 +1,85 @@
+git filter-branch --env-filter '
+# Save the original author name and email in local variables.
+OLD_NAME="$GIT_AUTHOR_NAME"
+OLD_EMAIL="$GIT_AUTHOR_EMAIL"
+
+# --- Change author name based on the map ---
+case "$OLD_NAME" in
+    "REDACTEDTL")
+        NEW_NAME="Teach Leader"
+        ;;
+    "REDACTEDT1")
+        NEW_NAME="Trainee 1"
+        ;;
+    "REDACTEDJ1")
+        NEW_NAME="Junior 1"
+        ;;
+    "REDACTEDS1")
+        NEW_NAME="Senior 1"
+        ;;
+    "REDACTEDT2")
+        NEW_NAME="Trainee 2"
+        ;;
+    "REDACTEDT2")
+        NEW_NAME="Senior 2"
+        ;;
+    "REDACTEDP")
+        NEW_NAME="Principal"
+        ;;
+    "REDACTEDS3")
+        NEW_NAME="Senior 3"
+        ;;
+    "REDACTEDT3")
+        NEW_NAME="Trainee 3"
+        ;;
+    "REDACTEDTME")
+        NEW_NAME="fiorde90"
+        ;;
+    *)
+        NEW_NAME="$OLD_NAME"
+        ;;
+esac
+
+# --- Change author email based on the map ---
+case "$OLD_EMAIL" in
+    "REDACTEDTL@mail.com" | "REDACTEDTLB@mail.com")
+        NEW_EMAIL="teach_lider@private.proyect"
+        ;;
+    "REDACTEDT1@mail.com")
+        NEW_EMAIL="trainee_1@private.proyect"
+        ;;
+    "REDACTEDJ1@mail.com")
+        NEW_EMAIL="junior_1@private.proyect"
+        ;;
+    "REDACTEDS1@mail.com")
+        NEW_EMAIL="senior_1@private.proyect"
+        ;;
+    "REDACTEDT2@mail.com")
+        NEW_EMAIL="trainee_2@private.proyect"
+        ;;
+    "REDACTEDS1@mail.com")
+        NEW_EMAIL="senior_2@private.proyect"
+        ;;
+    "REDACTEDP@mail.com")
+        NEW_EMAIL="principal@private.proyect"
+        ;;
+    "REDACTEDS3@mail.com")
+        NEW_EMAIL="senior_3@private.proyect"
+        ;;
+    "REDACTEDT3@mail.com")
+        NEW_EMAIL="trainee_3@private.proyect"
+        ;;
+    "REDACTEDTME@mail.com")
+        NEW_EMAIL="fiorde_90@hotmail.com"
+        ;;
+    *)
+        NEW_EMAIL="$OLD_EMAIL"
+        ;;
+esac
+
+# Set the new values for author and committer.
+export GIT_AUTHOR_NAME="$NEW_NAME"
+export GIT_AUTHOR_EMAIL="$NEW_EMAIL"
+export GIT_COMMITTER_NAME="$NEW_NAME"
+export GIT_COMMITTER_EMAIL="$NEW_EMAIL"
+' --tag-name-filter cat -- --branches --tags
